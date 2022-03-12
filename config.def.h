@@ -52,12 +52,18 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      	instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx*/
-	{ "Gimp",     	NULL,       NULL,       0,            1,           -1,        50,50,500,500,        2 },
-	{ "Firefox",  	NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        2 },
-	{ "calculator", NULL,		NULL,		0,			  1,           -1,		  80,50,400,300,		2 },
-	{ "floating",	NULL,		NULL,		0,			  1,           -1,		  80,50,800,600,		0 },
-	{ "scratchpad",	NULL,		NULL,		0,			  1,           -1,		  80,50,995,668,		0 },
+/*	class				instance    	title	tags mask	isfloating	monitor	float x,y,w,h		floatborderpx*/
+	{ "Gimp",     		NULL,       	NULL,	0,       	1,			-1,			50,50,500,500,		2 },
+	{ "Firefox",  		NULL,       	NULL,	1<<8,	 	0,			-1,			50,50,500,500,		2 },
+	{ "calculator", 	NULL,			NULL,	0,		 	1,			-1,			80,50,400,300,		2 },
+	{ "floating",		NULL,			NULL,	0,		 	1,			-1,			80,50,800,600,		0 },
+	{ "scratchpad",		NULL,			NULL,	0,		 	1,			-1,			80,50,995,668,		0 },
+	{ "qBittorrent",	"qbittorrent",	NULL,	1<<8,    	0,			-1,			80,50,800,600,      0 },
+	{ "Spotify",        "spotify",      NULL,       1<<8,           0,           -1,        80,50,800,600,      0 },
+	{ NULL,             NULL,           "Spotify",  1<<8,           0,           -1,        80,50,800,600,      0 },
+	{ "Spotify",        "spotify",      "Spotify",  1<<8,           0,           -1,        80,50,800,600,      0 },
+	{ NULL,             NULL,           "spotify",  1<<8,           0,           -1,        80,50,800,600,      0 },
+
 };
 
 /* layout(s) */
@@ -96,7 +102,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *webcmd[]  = { "firefox", NULL };
 static const char *ftermcmd[]  = { "kitty", "--class", "floating", NULL };
 static const char *filescmd[]  = { "alacritty", "-e", "ranger", NULL };
-static const char *gfilescmd[]  = { "pcmanfm-qt", "-n", NULL };
+static const char *gfilescmd[]  = { "dolphin", NULL };
 static const char *bookscmd[] = { "openbook", "-nb", col_gray1, "-nf", col_gray3, "-sb", col_darkmagenta, "-sf", col_gray4, NULL };
 static const char *spotifycmd[]  = { "spotify", NULL };
 static const char *virtualboxcmd[]  = { "virtualbox", NULL };
