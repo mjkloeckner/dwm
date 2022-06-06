@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int border 	= 1;
+static       unsigned int border 	= 0;
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
@@ -18,7 +18,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 /* static const char *fonts[]          = { "Source Code Pro:style=Regular:size=9", "JoyPixels:style=Regular:size=8:antialias=true:autohint=true", "DejaVu Sans" }; */
 static const char *fonts[]          = { "Victor Mono:style=SemiBold:size=9", "JoyPixels:style=Regular:size=8:antialias=true:autohint=true", "DejaVu Sans" };
-static const char dmenufont[]       = "DejaVuSansMono Nerd Font:style=Regular:size=9";
+static const char dmenufont[]          = "Victor Mono:style=SemiBold:size=9";
+/* static const char dmenufont[]       = "DejaVuSansMono Nerd Font:style=Regular:size=9"; */
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#cccccc";
@@ -38,7 +39,7 @@ enum { SchemeNorm, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	/* [SchemeNorm] = { col_gray3, col_gray1, col_gray2 }, */
-	/* [SchemeSel]  = { col_gray4, col_darkmagenta,  col_darkmagenta  }, */
+	[SchemeSel]  = { col_gray4, col_darkmagenta,  col_darkmagenta  },
 	[SchemeNorm]  = { col_gray3, col_gray1, col_gray1 },
 	[SchemeCol1]  = { col1,      col_gray1, col_gray2 },
 	[SchemeCol2]  = { col2,      col_gray1, col_gray2 },
@@ -46,7 +47,7 @@ static const char *colors[][3]      = {
 	[SchemeCol4]  = { col4,      col_gray1, col_gray2 },
 	[SchemeCol5]  = { col5,      col_gray1, col_gray2 },
 	[SchemeCol6]  = { col6,      col_gray1, col_gray2 },
-	[SchemeSel]   = { col_gray4, col_darkmagenta,  "#333333"  },
+	[SchemeSel]   = { col_gray4, col_darkmagenta,  "#434343"  },
 	[SchemeTitle]  = { col_gray4, "#222222",  col_darkmagenta  },
 };
 
@@ -60,11 +61,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 /*	class				instance    	 title        tags mask    isfloating   monitor   float x,y,w,h		floatborderpx*/
-    { "Gimp",           NULL,            NULL,        0,          1,           -1,        50,50,500,500,      2 },
-    { "Firefox",        NULL,            NULL,        1<<8,       0,           -1,        50,50,500,500,      2 },
-    { "calculator",     NULL,            NULL,        0,          1,           -1,        80,50,400,300,      2 },
+    { "Gimp",           NULL,            NULL,        1<<6,          0,           -1,        50,50,500,500,      0 },
+    /* { "Firefox",        NULL,            NULL,        1<<8,       0,           -1,        50,50,500,500,      2 }, */
+    { "calculator",     NULL,            NULL,        0,          1,           -1,        80,50,400,300,      0 },
     { "floating",       NULL,            NULL,        0,          1,           -1,        80,50,800,600,      0 },
-    { "scratchpad",     NULL,            NULL,        0,          1,           -1,        80,50,1366,905,     0 },
+    { "scratchpad",     NULL,            NULL,        0,          1,           -1,        80,50,1280,905,     0 },
 	{ "qBittorrent",    "qbittorrent",	 NULL,        1<<7,    	  0,           -1,        80,50,800,600,      0 },
 	{ "discord",        NULL,            NULL,        1<<8,    	  0,           -1,        80,50,800,600,      0 },
 	{ "easyeffects",    NULL,            NULL,        1<<9,    	  0,           -1,        80,50,800,600,      0 },
@@ -75,8 +76,6 @@ static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] *
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-
-#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
@@ -163,10 +162,21 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_j,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,			            XK_q,      killclient,     {0} },
+
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ControlMask,           XK_y,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY|ControlMask,           XK_u,      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY|ControlMask,           XK_i,      setlayout,      {.v = &layouts[6]} },
+	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[7]} },
+	{ MODKEY|ControlMask,           XK_p,      setlayout,      {.v = &layouts[8]} },
+
+	{ MODKEY|ShiftMask|ControlMask, XK_y,      setlayout,      {.v = &layouts[9]} },
+	{ MODKEY|ShiftMask|ControlMask, XK_u,      setlayout,      {.v = &layouts[10]} },
+	{ MODKEY|ShiftMask|ControlMask, XK_i,      setlayout,      {.v = &layouts[11]} },
+
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	/* { MODKEY,                       XK_0,      view,           {.ui = ~0 } }, */
@@ -175,23 +185,25 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+
 	/* gaps controls */
-	{ MODKEY|MOD2KEY,              XK_3,      incrgaps,       {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_3,      incrgaps,       {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_4,      incrigaps,      {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_4,      incrigaps,      {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_5,      incrogaps,      {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_5,      incrogaps,      {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_6,      incrihgaps,     {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_7,      incrivgaps,     {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_8,      incrohgaps,     {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_9,      incrovgaps,     {.i = +1 } },
-	{ MODKEY|MOD2KEY|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
-	{ MODKEY|MOD2KEY,              XK_0,      togglegaps,     {0} },
-	{ MODKEY,                      XK_equal,  defaultgaps,    {0} },
+	{ MODKEY|MOD2KEY,               XK_3,      incrgaps,       {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_3,      incrgaps,       {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_4,      incrigaps,      {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_4,      incrigaps,      {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_5,      incrogaps,      {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_5,      incrogaps,      {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_6,      incrihgaps,     {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_6,      incrihgaps,     {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_7,      incrivgaps,     {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_7,      incrivgaps,     {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_8,      incrohgaps,     {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_8,      incrohgaps,     {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_9,      incrovgaps,     {.i = +1 } },
+	{ MODKEY|MOD2KEY|ShiftMask,     XK_9,      incrovgaps,     {.i = -1 } },
+	{ MODKEY|MOD2KEY,               XK_0,      togglegaps,     {0} },
+	{ MODKEY|MOD2KEY,               XK_m,      toggle_border,  {0} },
+	{ MODKEY,                       XK_equal,  defaultgaps,    {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

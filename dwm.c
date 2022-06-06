@@ -289,6 +289,8 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 
+static void toggle_border(const Arg *arg);
+
 /* variables */
 /* static Systray *systray =  NULL; */
 static const char autostartblocksh[] = "autostart_blocking.sh";
@@ -1565,8 +1567,9 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldh = c->h; c->h = wc.height = h;
 	if (c->isfloating)
 		wc.border_width = c->floatborderpx;
-	else 
+	else
 		wc.border_width = c->bw;
+
 	if(!border) {
 		if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
 			|| &monocle == c->mon->lt[c->mon->sellt]->arrange)
@@ -2852,6 +2855,13 @@ zoom(const Arg *arg)
 		if (!c || !(c = nexttiled(c->next)))
 			return;
 	pop(c);
+}
+
+static void
+toggle_border(const Arg *arg)
+{
+	border = border ? 0 : 1;
+	updategeom();
 }
 
 int
