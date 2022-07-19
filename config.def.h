@@ -1,12 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
+static const int attachbelow = 1;               /* 1 means attach at the end */
 static       unsigned int border 	= 0;
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int snap      = 16;       /* snap pixel */
-static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 14;       /* horiz outer gap between windows and screen edge */
+static const unsigned int snap      = 10;       /* snap pixel */
+static const unsigned int gappih    = 4;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 4;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 4;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 60;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -47,7 +48,7 @@ static const char *colors[][3]      = {
 	[SchemeCol4]  = { col4,      col_gray1, col_gray2 },
 	[SchemeCol5]  = { col5,      col_gray1, col_gray2 },
 	[SchemeCol6]  = { col6,      col_gray1, col_gray2 },
-	[SchemeSel]   = { col_gray4, col_darkmagenta,  "#434343"  },
+	[SchemeSel]   = { col_gray4, col_darkmagenta,  "#535353"  },
 	[SchemeTitle]  = { col_gray4, "#222222",  col_darkmagenta  },
 };
 
@@ -60,15 +61,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-/*	class				instance    	 title        tags mask    isfloating   monitor   float x,y,w,h		floatborderpx*/
-    { "Gimp",           NULL,            NULL,        1<<6,          0,           -1,        50,50,500,500,      0 },
-    /* { "Firefox",        NULL,            NULL,        1<<8,       0,           -1,        50,50,500,500,      2 }, */
-    { "calculator",     NULL,            NULL,        0,          1,           -1,        80,50,400,300,      0 },
-    { "floating",       NULL,            NULL,        0,          1,           -1,        80,50,800,600,      0 },
-    { "scratchpad",     NULL,            NULL,        0,          1,           -1,        80,50,1280,905,     0 },
-	{ "qBittorrent",    "qbittorrent",	 NULL,        1<<7,    	  0,           -1,        80,50,800,600,      0 },
-	{ "discord",        NULL,            NULL,        1<<8,    	  0,           -1,        80,50,800,600,      0 },
-	{ "easyeffects",    NULL,            NULL,        1<<9,    	  0,           -1,        80,50,800,600,      0 },
+/*  class                instance         title    tags mask    isfloating    monitor    float x,y,w,h    floatborderpx*/
+    { "Gimp",            NULL,            NULL,    1<<6,        0,            -1,        50,50,500,500,   0 },
+    { "calculator",      NULL,            NULL,    0,           1,            -1,        80,50,680,592,   0 },
+    { "floating",        NULL,            NULL,    0,           1,            -1,        80,50,800,600,   0 },
+    { "scratchpad",      NULL,            NULL,    0,           1,            -1,        80,50,1280,900,  0 },
+    { "qBittorrent",     "qbittorrent",   NULL,    1<<7,        0,            -1,        80,50,800,600,   0 },
+    { "discord",         NULL,            NULL,    1<<8,        0,            -1,        80,50,800,600,   0 },
+    { "easyeffects",     NULL,            NULL,    1<<9,        0,            -1,        80,50,800,600,   0 },
+    { "TelegramDesktop", NULL,            NULL,    1<<8,        0,            -1,        80,50,800,600,   0 },
+    { "telegram-desktop",NULL,            NULL,    1<<8,        0,            -1,        80,50,800,600,   0 },
 };
 
 /* layout(s) */
@@ -186,7 +188,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
-	/* gaps controls */
+	/* gaps control */
 	{ MODKEY|MOD2KEY,               XK_3,      incrgaps,       {.i = +1 } },
 	{ MODKEY|MOD2KEY|ShiftMask,     XK_3,      incrgaps,       {.i = -1 } },
 	{ MODKEY|MOD2KEY,               XK_4,      incrigaps,      {.i = +1 } },
