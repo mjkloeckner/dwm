@@ -64,17 +64,17 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-/*  class                 instance        title  tags mask  isfloating  monitor  float x,y,w,h    floatborderpx*/
-    { "Gimp",             NULL,           NULL,  1<<6,      0,          -1,      50,50,500,500,   0 },
-    { "calculator",       NULL,           NULL,  0,         1,          -1,      80,50,680,592,   0 },
-    { "floating",         NULL,           NULL,  0,         1,          -1,      80,50,800,600,   0 },
-    { "scratchpad",       NULL,           NULL,  0,         1,          -1,      80,50,1284,954,  0 },
-    { "qBittorrent",      "qbittorrent",  NULL,  1<<7,      0,          -1,      80,50,800,600,   0 },
-    { "discord",          NULL,           NULL,  1<<8,      0,          -1,      80,50,800,600,   0 },
-    { "easyeffects",      NULL,           NULL,  1<<9,      0,          -1,      80,50,800,600,   0 },
-    { "TelegramDesktop",  NULL,           NULL,  1<<8,      0,          -1,      80,50,800,600,   0 },
-    { "telegram-desktop", NULL,           NULL,  1<<8,      0,          -1,      80,50,800,600,   0 },
-    { "Onboard",          NULL,           NULL,  0,         1,          -1,      80,50,900,365,   0 },
+/*  class                 instance  title  tags mask  isfloating  monitor  isrel  x,y,    w,    h,   floatborderpx */
+    { "Gimp",             NULL,     NULL,  1<<6,      0,          -1,      0,     0,0,  500,  500,   0,            },
+    { "calculator",       NULL,     NULL,  0,         1,          -1,      0,     0,0,  680,  592,   0,            },
+    { "floating",         NULL,     NULL,  0,         1,          -1,      0,     0,0,  800,  600,   0,            },
+    { "scratchpad",       NULL,     NULL,  0,         1,          -1,      1,     0,0, 0.73,0.915,   1,            },
+    { "qBittorrent",      NULL,     NULL,  1<<7,      0,          -1,      0,     0,0,  800,  600,   0,            },
+    { "discord",          NULL,     NULL,  1<<8,      0,          -1,      0,     0,0,  800,  600,   0,            },
+    { "easyeffects",      NULL,     NULL,  1<<9,      0,          -1,      0,     0,0,  800,  600,   0,            },
+    { "TelegramDesktop",  NULL,     NULL,  1<<8,      0,          -1,      0,     0,0,  800,  600,   0,            },
+    { "telegram-desktop", NULL,     NULL,  1<<8,      0,          -1,      0,     0,0,  800,  600,   0,            },
+    { "Onboard",          NULL,     NULL,  0,         1,          -1,      0,     0,0,  900,  365,   0,            },
 };
 
 /* layout(s) */
@@ -223,7 +223,8 @@ static Key keys[] = {
 };
 
 /* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
+ * ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click          event mask  button    function        argument */
 	{ ClkLtSymbol,    0,          Button1,  setlayout,      {0} },
