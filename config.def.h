@@ -154,7 +154,6 @@ static const char *filescmd[]  = { "alacritty", "-e", "ranger", NULL };
 static const char *gfilescmd[]  = { "dolphin", NULL };
 static const char *bookscmd[] = { "openbook", "-nb", col_gray1, "-nf",
 	col_gray3, "-sb", col_darkmagenta, "-sf", col_gray4, NULL };
-static const char *spotifycmd[]  = { "spotify", NULL };
 static const char *virtualboxcmd[]  = { "virtualbox", NULL };
 static const char *switchkblayout[]  = { "switchkblayout", NULL };
 static const char *lockscreen[]  = { "lockscreen", NULL };
