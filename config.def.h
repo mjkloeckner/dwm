@@ -96,7 +96,7 @@ static const Rule rules[] = {
 /*  class          instance  title  tags  float  mon rel  x  y     w      h  bpx  key */
   { "Gimp",           NULL,  NULL,  1<<6,     0,  -1,  0, 0, 0,  500,   500,  0,   0 },
   { "floating",       NULL,  NULL,     0,     1,  -1,  0, 0, 0,  800,   600,  0,   0 },
-  { "scratchpad",     NULL,  NULL,     0,     1,  -1,  1, 0, 14, 0.73, 0.948,  0, 's' },
+  { "scratchpad",     NULL,  NULL,     0,     1,  -1,  1, 0, 14, 0.73, 0.948, 0, 's' },
   { "calculator",     NULL,  NULL,     0,     1,  -1,  0, 0, 0,  680,   592,  0, 'c' },
   { "qBittorrent",    NULL,  NULL,  1<<7,     0,  -1,  0, 0, 0,  800,   600,  0,   0 },
   { "discord",        NULL,  NULL,  1<<8,     0,  -1,  0, 0, 0,  800,   600,  0,   0 },
@@ -177,7 +177,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,   XK_e,         spawn,         {.v = filescmd }},
 	{ MODKEY,             XK_v,         spawn,         {.v = virtualboxcmd }},
 	{ MODKEY,             XK_b,         spawn,         {.v = bookscmd }},
-	{ MODKEY,             XK_s,         spawn,         {.v = spotifycmd }},
+    { MODKEY,             XK_s,         spawn,         SHCMD("xfce4-screenshooter -c -r") },
+    { MODKEY|ShiftMask,   XK_s,         spawn,         SHCMD("xfce4-screenshooter") },
 	{ MODKEY,             XK_F2,        spawn,         {.v = switchkblayout }},
 	{ MODKEY,             XK_x,         spawn,         {.v = lockscreen }},
 	{ MODKEY|ShiftMask,   XK_x,         spawn,         {.v = systemsleep }},
@@ -186,7 +187,7 @@ static Key keys[] = {
 	{ MODKEY,             XK_BackSpace, togglescratch, {.v = scratchpadcmd }},
 	{ MODKEY,             XK_cedilla,   togglescratch, {.v = scratchpadcmd }},
 	{ MODKEY,             XK_c,         togglescratch, {.v = scratchcalc }},
-	{ MODKEY|ShiftMask,   XK_b,         togglebar,     {0}},
+	{ MODKEY,             XK_b,         togglebar,     {0}},
 	{ MODKEY,             XK_j,         focusstack,    {.i = +1 }},
 	{ MODKEY,             XK_k,         focusstack,    {.i = -1 }},
 	{ MODKEY,             XK_i,         incnmaster,    {.i = +1 }},
@@ -256,8 +257,8 @@ static Key keys[] = {
 	{ 0,              XF86XK_AudioPlay,         spawn, SHCMD("playerctl -i firefox play-pause")},
 	{ 0,              XF86XK_AudioPrev,         spawn, SHCMD("playerctl -i firefox previous")},
 	{ 0,              XF86XK_AudioNext,         spawn, SHCMD("playerctl -i firefox next")},
-	{ 0,              XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 2")},
-	{ 0,              XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 2")}
+	{ 0,              XF86XK_MonBrightnessUp,   spawn, SHCMD("xbacklight -inc 5")},
+	{ 0,              XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -dec 5")}
 };
 
 /* button definitions */
